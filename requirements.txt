@@ -1,0 +1,7 @@
+# pga-betting-ai-app dependencies
+# All core logic uses Python stdlib only (json, datetime, argparse, pathlib).
+# jsonschema is optional for full JSON Schema validation of event packets.
+# pytest is for development/CI only.
+
+jsonschema>=4.0
+pytest>=7.0

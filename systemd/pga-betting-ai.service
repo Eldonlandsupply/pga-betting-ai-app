@@ -1,0 +1,34 @@
+[Unit]
+Description=PGA Betting AI scan (oneshot batch job)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+
+# Adjust User/Group to your Pi user
+User=pi
+Group=pi
+
+# Adjust WorkingDirectory to where you cloned the repo
+WorkingDirectory=/home/pi/pga-betting-ai-app
+
+# Load secrets from .env file
+EnvironmentFile=/home/pi/pga-betting-ai-app/.env
+
+# This runs the healthcheck first, then the scan if a packet exists.
+# Replace EVENT_PACKET_PATH with your actual packet location or a cron-generated path.
+ExecStartPre=/home/pi/pga-betting-ai-app/.venv/bin/python3 scripts/healthcheck.py
+ExecStart=/home/pi/pga-betting-ai-app/.venv/bin/python3 scripts/run_scan.py \
+    --packet /home/pi/pga-betting-ai-app/input/current_event.json
+
+# Logs go to journald; view with: journalctl -u pga-betting-ai.service
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=pga-betting-ai
+
+# Fail loudly, do not restart (batch job)
+Restart=no
+
+[Install]
+WantedBy=multi-user.target
