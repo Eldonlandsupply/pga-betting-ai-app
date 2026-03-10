@@ -5,9 +5,8 @@ from scripts.validate_event_packet import validate_packet
 
 
 class ValidateEventPacketTests(unittest.TestCase):
-    def test_valid_packet(self) -> None:
-        now = datetime(2026, 1, 1, tzinfo=timezone.utc)
-        packet = {
+    def _base_packet(self, now: datetime) -> dict:
+        return {
             "event": {
                 "tournament": "Sample Open",
                 "tour": "pga",
@@ -40,6 +39,10 @@ class ValidateEventPacketTests(unittest.TestCase):
                 }
             ],
         }
+
+    def test_valid_packet(self) -> None:
+        now = datetime(2026, 1, 1, tzinfo=timezone.utc)
+        packet = self._base_packet(now)
 
         errors = validate_packet(packet, now=now)
         self.assertEqual(errors, [])
@@ -88,6 +91,40 @@ class ValidateEventPacketTests(unittest.TestCase):
         self.assertTrue(any("stale line timestamp" in error for error in errors))
         self.assertTrue(any("invalid thresholds" in error for error in errors))
         self.assertTrue(any("MISSING fields present" in error for error in errors))
+
+    def test_rejects_missing_data_quality_required_fields(self) -> None:
+        now = datetime(2026, 1, 1, tzinfo=timezone.utc)
+        packet = self._base_packet(now)
+        del packet["data_quality"]
+
+        errors = validate_packet(packet, now=now)
+
+        self.assertIn("MISSING data_quality object", errors)
+        self.assertIn("MISSING data_quality.source_freshness", errors)
+        self.assertIn("MISSING data_quality.missing_fields", errors)
+
+    def test_rejects_non_numeric_probability_fields(self) -> None:
+        now = datetime(2026, 1, 1, tzinfo=timezone.utc)
+        packet = self._base_packet(now)
+        recommendation = packet["recommendations"][0]
+        recommendation["implied_probability"] = "0.42"
+        recommendation["fair_probability"] = None
+        recommendation["confidence"] = "0.66"
+
+        errors = validate_packet(packet, now=now)
+
+        self.assertIn("recommendations[1] implied_probability must be number", errors)
+        self.assertIn("recommendations[1] fair_probability must be number", errors)
+        self.assertIn("recommendations[1] confidence must be number", errors)
+
+    def test_rejects_non_string_market_timestamp(self) -> None:
+        now = datetime(2026, 1, 1, tzinfo=timezone.utc)
+        packet = self._base_packet(now)
+        packet["markets"][0]["timestamp"] = 1234567890
+
+        errors = validate_packet(packet, now=now)
+
+        self.assertIn("markets[1] timestamp must be string", errors)
 
 
 if __name__ == "__main__":

@@ -26,6 +26,10 @@ REQUIRED_RECOMMENDATION_KEYS = {
 }
 
 
+def _is_number(value: Any) -> bool:
+    return isinstance(value, (int, float)) and not isinstance(value, bool)
+
+
 def _parse_iso8601(value: str) -> datetime:
     if value.endswith("Z"):
         value = value[:-1] + "+00:00"
@@ -63,11 +67,17 @@ def validate_packet(packet: dict[str, Any], now: datetime, stale_line_minutes: i
         implied = rec.get("implied_probability")
         fair = rec.get("fair_probability")
         confidence = rec.get("confidence")
-        if isinstance(implied, (int, float)) and not 0 <= implied <= 1:
+        if not _is_number(implied):
+            errors.append(f"recommendations[{idx}] implied_probability must be number")
+        elif not 0 <= implied <= 1:
             errors.append(f"recommendations[{idx}] implied_probability out of range")
-        if isinstance(fair, (int, float)) and not 0 <= fair <= 1:
+        if not _is_number(fair):
+            errors.append(f"recommendations[{idx}] fair_probability must be number")
+        elif not 0 <= fair <= 1:
             errors.append(f"recommendations[{idx}] fair_probability out of range")
-        if isinstance(confidence, (int, float)) and not 0 <= confidence <= 1:
+        if not _is_number(confidence):
+            errors.append(f"recommendations[{idx}] confidence must be number")
+        elif not 0 <= confidence <= 1:
             errors.append(f"recommendations[{idx}] confidence out of range")
 
         min_odds = rec.get("min_acceptable_odds")
@@ -78,13 +88,24 @@ def validate_packet(packet: dict[str, Any], now: datetime, stale_line_minutes: i
                     f"recommendations[{idx}] invalid thresholds: no_play_below_odds > min_acceptable_odds"
                 )
 
-    data_quality = packet.get("data_quality", {})
+    data_quality = packet.get("data_quality")
     if not isinstance(data_quality, dict):
         errors.append("MISSING data_quality object")
         data_quality = {}
 
+    source_freshness = data_quality.get("source_freshness")
+    if source_freshness is None:
+        errors.append("MISSING data_quality.source_freshness")
+    elif source_freshness not in {"fresh", "aging", "stale"}:
+        errors.append("invalid data_quality.source_freshness")
+
+    if "missing_fields" not in data_quality:
+        errors.append("MISSING data_quality.missing_fields")
+
     missing_fields = data_quality.get("missing_fields")
-    if isinstance(missing_fields, list) and missing_fields:
+    if missing_fields is not None and not isinstance(missing_fields, list):
+        errors.append("data_quality.missing_fields must be list")
+    elif isinstance(missing_fields, list) and missing_fields:
         errors.append("MISSING fields present, confidence should be downgraded")
 
     conflicts = data_quality.get("conflicts")
@@ -104,15 +125,19 @@ def validate_packet(packet: dict[str, Any], now: datetime, stale_line_minutes: i
             if key not in market:
                 errors.append(f"MISSING markets[{idx}].{key}")
         timestamp = market.get("timestamp")
-        if isinstance(timestamp, str):
-            try:
-                ts = _parse_iso8601(timestamp)
-            except ValueError:
-                errors.append(f"markets[{idx}] invalid timestamp format")
-                continue
-            age_minutes = (now - ts.astimezone(timezone.utc)).total_seconds() / 60
-            if age_minutes > stale_line_minutes:
-                errors.append(f"markets[{idx}] stale line timestamp")
+        if timestamp is None:
+            continue
+        if not isinstance(timestamp, str):
+            errors.append(f"markets[{idx}] timestamp must be string")
+            continue
+        try:
+            ts = _parse_iso8601(timestamp)
+        except ValueError:
+            errors.append(f"markets[{idx}] invalid timestamp format")
+            continue
+        age_minutes = (now - ts.astimezone(timezone.utc)).total_seconds() / 60
+        if age_minutes > stale_line_minutes:
+            errors.append(f"markets[{idx}] stale line timestamp")
 
     return errors
 
