@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Golf Betting Event Packet",
+  "type": "object",
+  "required": ["event", "data_quality", "markets", "recommendations"],
+  "properties": {
+    "event": {
+      "type": "object",
+      "required": ["tournament", "tour", "course", "format"],
+      "properties": {
+        "tournament": { "type": "string", "minLength": 1 },
+        "tour": { "type": "string", "enum": ["pga", "liv", "dpwt", "majors", "opposite_field"] },
+        "course": { "type": "string", "minLength": 1 },
+        "format": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": true
+    },
+    "data_quality": {
+      "type": "object",
+      "required": ["source_freshness", "missing_fields"],
+      "properties": {
+        "source_freshness": { "type": "string", "enum": ["fresh", "aging", "stale"] },
+        "missing_fields": { "type": "array", "items": { "type": "string" } },
+        "conflicts": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": true
+    },
+    "markets": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["bet_type", "player", "sportsbook", "odds_decimal", "timestamp"],
+        "properties": {
+          "bet_type": { "type": "string" },
+          "player": { "type": "string" },
+          "sportsbook": { "type": "string" },
+          "odds_decimal": { "type": "number", "exclusiveMinimum": 1.0 },
+          "timestamp": { "type": "string", "format": "date-time" }
+        },
+        "additionalProperties": true
+      }
+    },
+    "recommendations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "rank",
+          "bet_type",
+          "player",
+          "implied_probability",
+          "fair_probability",
+          "edge_percent",
+          "confidence",
+          "min_acceptable_odds",
+          "no_play_below_odds",
+          "reasoning",
+          "invalidation_conditions"
+        ],
+        "properties": {
+          "rank": { "type": "integer", "minimum": 1 },
+          "bet_type": { "type": "string" },
+          "player": { "type": "string" },
+          "implied_probability": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+          "fair_probability": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+          "edge_percent": { "type": "number" },
+          "confidence": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+          "min_acceptable_odds": { "type": "number", "exclusiveMinimum": 1.0 },
+          "no_play_below_odds": { "type": "number", "exclusiveMinimum": 1.0 },
+          "reasoning": { "type": "string", "minLength": 1 },
+          "invalidation_conditions": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string" }
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}

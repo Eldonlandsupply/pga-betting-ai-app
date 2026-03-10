@@ -1,0 +1,43 @@
+version: 1
+
+thresholds:
+  min_edge_percent:
+    outright: 2.5
+    placement: 2.0
+    matchup: 1.5
+    make_miss_cut: 1.5
+    frl: 3.5
+  min_confidence:
+    outright: 0.55
+    placement: 0.58
+    matchup: 0.60
+    make_miss_cut: 0.60
+    frl: 0.52
+
+stake_tiers:
+  high:
+    confidence_min: 0.72
+    edge_min: 3.5
+    units: 1.25
+  medium:
+    confidence_min: 0.62
+    edge_min: 2.25
+    units: 0.75
+  small:
+    confidence_min: 0.55
+    edge_min: 1.5
+    units: 0.40
+
+exposure_limits:
+  max_units_per_event: 5.0
+  max_units_per_player: 2.0
+  max_correlated_units_cluster: 2.5
+
+suppression:
+  stale_line_minutes: 30
+  high_conflict_sources: true
+  missing_critical_fields:
+    - event.tour
+    - event.format
+    - markets.timestamp
+    - players.long_term_skill
