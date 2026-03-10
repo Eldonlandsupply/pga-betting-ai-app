@@ -1,0 +1,82 @@
+version: 1
+
+tours:
+  pga:
+    description: "Deep data coverage, cut and no-cut mixed schedule"
+    components:
+      baseline_skill: 0.30
+      medium_term_form: 0.16
+      short_term_trend: 0.07
+      course_fit: 0.14
+      field_strength_adjusted_performance: 0.12
+      volatility_control: 0.06
+      weather_resilience: 0.05
+      travel_penalty: -0.03
+      injury_wd_penalty: -0.05
+      uncertainty_penalty: -0.07
+    putting_regression_strength: 0.85
+    weak_field_translation_penalty: 0.10
+
+  liv:
+    description: "No-cut structure, reduced public stat depth"
+    components:
+      baseline_skill: 0.34
+      medium_term_form: 0.14
+      short_term_trend: 0.05
+      course_fit: 0.12
+      major_translation: 0.09
+      field_relative_consistency: 0.10
+      volatility_control: 0.10
+      team_noise_penalty: -0.04
+      travel_penalty: -0.03
+      uncertainty_penalty: -0.09
+    putting_regression_strength: 0.90
+    weak_field_translation_penalty: 0.15
+
+  dpwt:
+    description: "International variance and uneven data coverage"
+    components:
+      baseline_skill: 0.32
+      medium_term_form: 0.15
+      short_term_trend: 0.06
+      course_fit: 0.14
+      field_strength_adjusted_performance: 0.10
+      weather_resilience: 0.07
+      local_specialist_factor: 0.05
+      travel_penalty: -0.04
+      injury_wd_penalty: -0.03
+      uncertainty_penalty: -0.10
+    putting_regression_strength: 0.88
+    weak_field_translation_penalty: 0.14
+
+  majors:
+    description: "Highest field strength and course severity"
+    components:
+      baseline_skill: 0.34
+      medium_term_form: 0.14
+      short_term_trend: 0.04
+      tee_to_green_stability: 0.18
+      long_iron_stress_fit: 0.12
+      course_fit: 0.10
+      pressure_translation: 0.06
+      volatility_control: 0.06
+      injury_wd_penalty: -0.04
+      uncertainty_penalty: -0.08
+    putting_regression_strength: 0.92
+    weak_field_translation_penalty: 0.20
+
+  opposite_field:
+    description: "Weak-field events with inflated recent form signals"
+    components:
+      baseline_skill: 0.28
+      medium_term_form: 0.14
+      short_term_trend: 0.05
+      course_fit: 0.13
+      field_strength_adjusted_performance: 0.14
+      volatility_control: 0.07
+      weather_resilience: 0.05
+      travel_penalty: -0.03
+      injury_wd_penalty: -0.04
+      uncertainty_penalty: -0.09
+    putting_regression_strength: 0.90
+    weak_field_translation_penalty: 0.18
