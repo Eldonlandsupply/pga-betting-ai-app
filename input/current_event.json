@@ -1,0 +1,260 @@
+{
+  "event": {
+    "tournament": "2026 Players Championship",
+    "tour": "pga",
+    "course": "TPC Sawgrass (Stadium Course)",
+    "format": "72-hole stroke play, no cut",
+    "location": "Ponte Vedra Beach, Florida",
+    "dates": "2026-03-12 to 2026-03-15",
+    "purse_usd": 25000000,
+    "winner_share_usd": 4500000,
+    "field_size": 123,
+    "notes": "Strongest field in golf. Pete Dye design. Water in play on 16 holes. Fast TifEagle Bermuda greens. Winning scores last 10 years: -10 to -20. Positional course demanding precise landing areas."
+  },
+  "data_quality": {
+    "source_freshness": "fresh",
+    "missing_fields": [
+      "players.strokes_gained_detail",
+      "players.travel_itinerary",
+      "weather.wind_forecast_hourly"
+    ],
+    "conflicts": [],
+    "source_notes": "Odds from FanDuel/DraftKings as of 2026-03-10. Player form from PGA Tour SG data and recent results. McIlroy injury status uncertain — listed in field but traveling Wednesday."
+  },
+  "players": [
+    {
+      "name": "Scottie Scheffler",
+      "world_ranking": 1,
+      "form_notes": "Won The American Express (2026 W1). T24 Arnold Palmer Invitational — worst finish of year. Lost ~3 shots on approach at Bay Hill. Putter below average last 2 weeks. Two-time defending Players champion (2023 -17, 2024 -20). Won consecutive Players first in history. Strong tee-to-green and around the greens.",
+      "course_history": "Won 2023 and 2024 Players. Course fits his positional, all-around game.",
+      "injury_status": "healthy",
+      "long_term_skill": 0.96
+    },
+    {
+      "name": "Rory McIlroy",
+      "world_ranking": 2,
+      "form_notes": "WD Arnold Palmer Invitational after R2 with back injury. T2 Genesis Invitational. Defending Players champion (2025, won playoff at -12). Still in field as of 2026-03-10, traveling Wednesday. Distance/driving central to his game — back injury is a real concern.",
+      "course_history": "Two-time Players champion (2019 and 2025). Extremely comfortable at TPC Sawgrass.",
+      "injury_status": "back injury — uncertain",
+      "long_term_skill": 0.93
+    },
+    {
+      "name": "Collin Morikawa",
+      "world_ranking": 5,
+      "form_notes": "Won AT&T Pebble Beach 2026. T7 Genesis Invitational. Solo 5th Arnold Palmer Invitational (three-putt bogey 18). Putter performing above average in 2026. Seventh Players start — average attempts before winning here is 7+. Two-time major champion. Elite iron/wedge play, great course fit.",
+      "course_history": "Career-best T10 at TPC Sawgrass last year. Historically held back by putting, but putting improved in 2026.",
+      "injury_status": "healthy",
+      "long_term_skill": 0.89
+    },
+    {
+      "name": "Ludvig Aberg",
+      "world_ranking": 8,
+      "form_notes": "Started season with WD then MC. T37 Pebble Beach. T20 Genesis. T3 Arnold Palmer Invitational (66-67 weekend). Back on track. 4th in Proximity. Fires at flags well — suits below-average-sized greens at TPC Sawgrass. Cool demeanor under pressure.",
+      "course_history": "Won an event at TPC Sawgrass in 2025 (non-Players). Limited Players history.",
+      "injury_status": "healthy",
+      "long_term_skill": 0.86
+    },
+    {
+      "name": "Si Woo Kim",
+      "world_ranking": 22,
+      "form_notes": "Perfect 7-for-7 in 2026 making cuts. Five T13 or better finishes. 2nd in SG Tee-to-Green and SG Approach in 2026. Won Players in 2017 (youngest ever, aged 21). 8 for 8 completing events. Last win: 2023 Sony Open. Age 30.",
+      "course_history": "Won here in 2017. Has cashed in all 8 completed starts at TPC Sawgrass. Most comfortable on one of the most uncomfortable courses on tour.",
+      "injury_status": "healthy",
+      "long_term_skill": 0.82
+    },
+    {
+      "name": "Akshay Bhatia",
+      "world_ranking": 18,
+      "form_notes": "Just won Arnold Palmer Invitational in playoff over Berger. Third career PGA Tour win. Trailed by 5 on Sunday back nine and came back. Hot form over last 4 tournaments. High upside/high variance profile.",
+      "course_history": "Limited TPC Sawgrass history.",
+      "injury_status": "healthy",
+      "long_term_skill": 0.80
+    },
+    {
+      "name": "Russell Henley",
+      "world_ranking": 25,
+      "form_notes": "T6 Arnold Palmer Invitational, bogey-free weekend. Top 20 in every tournament except one MC at Genesis in 2026. Model-consistent ball-striker. 1.53 SG per round tee-to-green in 2026 (one of six players above 1.5).",
+      "course_history": "Solid TPC Sawgrass record. Under the radar pick.",
+      "injury_status": "healthy",
+      "long_term_skill": 0.81
+    }
+  ],
+  "markets": [
+    {
+      "bet_type": "outright",
+      "player": "Scottie Scheffler",
+      "sportsbook": "FanDuel",
+      "odds_decimal": 5.80,
+      "odds_american": "+480",
+      "timestamp": "2026-03-10T18:00:00+00:00"
+    },
+    {
+      "bet_type": "outright",
+      "player": "Rory McIlroy",
+      "sportsbook": "FanDuel",
+      "odds_decimal": 17.00,
+      "odds_american": "+1600",
+      "timestamp": "2026-03-10T18:00:00+00:00"
+    },
+    {
+      "bet_type": "outright",
+      "player": "Collin Morikawa",
+      "sportsbook": "FanDuel",
+      "odds_decimal": 19.00,
+      "odds_american": "+1800",
+      "timestamp": "2026-03-10T18:00:00+00:00"
+    },
+    {
+      "bet_type": "outright",
+      "player": "Ludvig Aberg",
+      "sportsbook": "FanDuel",
+      "odds_decimal": 23.00,
+      "odds_american": "+2200",
+      "timestamp": "2026-03-10T18:00:00+00:00"
+    },
+    {
+      "bet_type": "outright",
+      "player": "Si Woo Kim",
+      "sportsbook": "FanDuel",
+      "odds_decimal": 23.00,
+      "odds_american": "+2200",
+      "timestamp": "2026-03-10T18:00:00+00:00"
+    },
+    {
+      "bet_type": "outright",
+      "player": "Akshay Bhatia",
+      "sportsbook": "FanDuel",
+      "odds_decimal": 41.00,
+      "odds_american": "+4000",
+      "timestamp": "2026-03-10T18:00:00+00:00"
+    },
+    {
+      "bet_type": "outright",
+      "player": "Russell Henley",
+      "sportsbook": "FanDuel",
+      "odds_decimal": 31.00,
+      "odds_american": "+3000",
+      "timestamp": "2026-03-10T18:00:00+00:00"
+    },
+    {
+      "bet_type": "top_10",
+      "player": "Collin Morikawa",
+      "sportsbook": "DraftKings",
+      "odds_decimal": 3.50,
+      "odds_american": "+250",
+      "timestamp": "2026-03-10T18:00:00+00:00"
+    },
+    {
+      "bet_type": "top_10",
+      "player": "Si Woo Kim",
+      "sportsbook": "DraftKings",
+      "odds_decimal": 4.00,
+      "odds_american": "+300",
+      "timestamp": "2026-03-10T18:00:00+00:00"
+    },
+    {
+      "bet_type": "top_10",
+      "player": "Russell Henley",
+      "sportsbook": "DraftKings",
+      "odds_decimal": 4.50,
+      "odds_american": "+350",
+      "timestamp": "2026-03-10T18:00:00+00:00"
+    },
+    {
+      "bet_type": "top_20",
+      "player": "Akshay Bhatia",
+      "sportsbook": "DraftKings",
+      "odds_decimal": 2.75,
+      "odds_american": "+175",
+      "timestamp": "2026-03-10T18:00:00+00:00"
+    }
+  ],
+  "recommendations": [
+    {
+      "rank": 1,
+      "bet_type": "outright",
+      "player": "Collin Morikawa",
+      "implied_probability": 0.053,
+      "fair_probability": 0.075,
+      "edge_percent": 4.2,
+      "confidence": 0.64,
+      "min_acceptable_odds": 17.00,
+      "no_play_below_odds": 15.00,
+      "reasoning": "Elite iron/wedge play is tailor-made for TPC Sawgrass. Putter performing above average in 2026 — the one historical weakness. At his 7th attempt (average win attempt is 7+), form is the best it has been here. Morikawa at +1800 represents real value if putting holds.",
+      "invalidation_conditions": [
+        "Putting reverts to below-average form early in tournament",
+        "Odds shorten below +1500 before Thursday",
+        "Course plays significantly softer than expected (reduces positional premium)"
+      ]
+    },
+    {
+      "rank": 2,
+      "bet_type": "top_10",
+      "player": "Si Woo Kim",
+      "implied_probability": 0.250,
+      "fair_probability": 0.310,
+      "edge_percent": 6.0,
+      "confidence": 0.66,
+      "min_acceptable_odds": 3.75,
+      "no_play_below_odds": 3.25,
+      "reasoning": "Perfect 7-for-7 making cuts in 2026. 2nd in SG Tee-to-Green and SG Approach. Course winner and historically dominant here. Top-10 at +300 is strong value given his form and course comfort. Putting at TPC Sawgrass is historically near-neutral for him (loses just -0.01 SG/round here since 2015).",
+      "invalidation_conditions": [
+        "Odds shorten below +250 before Thursday",
+        "Any injury report or withdrawal news",
+        "Unusually windy conditions (his game is less wind-resilient than peers)"
+      ]
+    },
+    {
+      "rank": 3,
+      "bet_type": "top_10",
+      "player": "Russell Henley",
+      "implied_probability": 0.222,
+      "fair_probability": 0.275,
+      "edge_percent": 5.3,
+      "confidence": 0.63,
+      "min_acceptable_odds": 4.00,
+      "no_play_below_odds": 3.50,
+      "reasoning": "1.53 SG/round tee-to-green in 2026 — elite ball-striking. Consistent top-20 finishes all year. Bogey-free weekend at Arnold Palmer. Flying under the radar at +3000 outright. Top-10 at +350 is value.",
+      "invalidation_conditions": [
+        "Odds shorten significantly before Thursday",
+        "Any missed cuts or form collapse before tournament start"
+      ]
+    },
+    {
+      "rank": 4,
+      "bet_type": "outright",
+      "player": "Rory McIlroy",
+      "implied_probability": 0.059,
+      "fair_probability": 0.059,
+      "edge_percent": 0.0,
+      "confidence": 0.35,
+      "min_acceptable_odds": 20.00,
+      "no_play_below_odds": 17.00,
+      "reasoning": "PASS at current odds. Back injury creates massive uncertainty. His game relies on distance and driver dominance — a compromised back could significantly reduce his effectiveness. Defending champion pedigree and course comfort is compelling but not at +1600 with injury uncertainty. Would reconsider at +2500+ if injury downgraded.",
+      "invalidation_conditions": [
+        "Any medical update confirming back injury severity",
+        "Odds do not lengthen to +2500 or better by Wednesday",
+        "Reports of him not hitting driver at practice"
+      ]
+    }
+  ],
+  "risk_flags": [
+    "McIlroy injury status unresolved — all McIlroy positions should be treated as speculative until Wednesday practice report",
+    "Scheffler approach play was -3 shots at Arnold Palmer — if that continues at TPC Sawgrass the water hazards will punish him",
+    "No live odds feed — all odds as of 2026-03-10 18:00 UTC and may have moved"
+  ],
+  "passes_and_traps": [
+    {
+      "player": "Scottie Scheffler",
+      "bet_type": "outright",
+      "verdict": "PASS",
+      "reason": "Too short at +480 given recent form dip and approach volatility. Would need +600 or better to justify given precision demands of TPC Sawgrass water hazards."
+    },
+    {
+      "player": "Rory McIlroy",
+      "bet_type": "outright",
+      "verdict": "PASS",
+      "reason": "Injury uncertainty makes +1600 unplayable. Revisit Wednesday after practice report."
+    }
+  ]
+}
