@@ -1,7 +1,22 @@
-# pga-betting-ai-app dependencies
-# All core logic uses Python stdlib only (json, datetime, argparse, pathlib).
-# jsonschema is optional for full JSON Schema validation of event packets.
-# pytest is for development/CI only.
+# pga-betting-ai requirements
+# Core — all pure Python, no heavy deps required
+pyyaml>=6.0
+numpy>=1.24
 
+# Validation
 jsonschema>=4.0
+
+# UI (optional — only needed for Streamlit dashboard)
+streamlit>=1.30
+
+# Testing
 pytest>=7.0
+pytest-cov>=4.0
+
+# Data sources (optional — Phase 2)
+# requests>=2.31       # For DataGolf, Odds API HTTP calls
+# pandas>=2.0          # For bulk data processing
+
+# Development only
+# mypy>=1.0
+# ruff>=0.1

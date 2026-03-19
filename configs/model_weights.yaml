@@ -1,0 +1,127 @@
+# model_weights.yaml
+# Central configuration for all model signal weights.
+# These are starting defaults. The weight_updater.py adjusts these
+# based on post-event audit evidence. Do not hand-edit mid-season
+# without a corresponding changelog entry.
+
+# --- VERSION TRACKING ---
+version: "1.0.0"
+last_updated: "2025-01-01"
+updated_by: "initial_config"
+evidence_basis: "Pre-season defaults based on literature + DG research"
+
+# --- GLOBAL SIGNAL WEIGHTS ---
+# Applied before course-specific adjustments.
+# Values are relative weights (will be normalized to sum to 1.0 internally).
+
+global_weights:
+  skill_baseline: 0.30       # Long-term weighted SG composite
+  recent_form: 0.22          # Decayed rolling form (last 6-8 events)
+  course_fit: 0.20           # Course demand vs player skill match
+  volatility_profile: 0.08   # Ceiling / floor / consistency
+  market_signal: 0.10        # Market movement, sharp money signals
+  contextual_flags: 0.06     # Injury, rust, travel, schedule load
+  ownership_discount: 0.04   # Fade crowded bets at certain thresholds
+
+# --- RECENT FORM DECAY ---
+form_decay:
+  # Exponential decay weights by event recency
+  # event_1 = most recent, event_8 = 8 events ago
+  event_1: 0.28
+  event_2: 0.22
+  event_3: 0.17
+  event_4: 0.13
+  event_5: 0.09
+  event_6: 0.06
+  event_7: 0.03
+  event_8: 0.02
+  # Events beyond 8 contribute to baseline only, not recent form window
+
+# --- STROKES GAINED CATEGORY WEIGHTS ---
+# Applied within the skill_baseline and course_fit calculations.
+# Course-specific configs in course_profiles.yaml override these.
+
+sg_default_weights:
+  sg_ott: 0.24     # Off the tee
+  sg_app: 0.32     # Approach
+  sg_atg: 0.20     # Around the green
+  sg_putt: 0.24    # Putting
+
+# --- COURSE FIT SIGNAL WEIGHTS ---
+course_fit_weights:
+  sg_category_match: 0.50      # SG category fit to course demand profile
+  comp_course_history: 0.25    # Performance on comparable courses
+  surface_split: 0.15          # Bent/Bermuda/Poa/Overseed performance
+  conditions_split: 0.10       # Wind, firm/soft, altitude adjustments
+
+# --- PGA TOUR ADJUSTMENTS ---
+pga_adjustments:
+  field_strength_factor: 1.0   # Baseline
+  cut_adjustment: true         # Apply MC probability to placements
+  no_cut_event_boost: 0.05     # Slight boost for all players in no-cut events
+  signature_event_factor: 1.10 # Tighter field = larger variance in outrights
+  major_factor: 1.15           # Elevated difficulty and variance
+  alt_field_penalty: -0.08     # Reduce confidence for alternate-field events
+
+# --- LIV GOLF ADJUSTMENTS ---
+liv_adjustments:
+  field_strength_factor: 0.75  # Weaker average field strength vs PGA
+  no_cut_structure: true       # Always true for LIV
+  field_size_factor: 0.90      # ~48 players vs ~156 — affects sim distributions
+  data_depth_penalty: 0.15     # Uncertainty discount due to limited public data
+  team_overlay: false          # Set true if team scoring used in picks
+  market_efficiency: 0.70      # LIV markets less efficient than PGA
+  recency_boost: 0.05          # LIV-specific form carries slightly more weight
+  # LIV-specific: historical PGA stats still informative but with discount
+  pga_stat_transfer_weight: 0.65
+
+# --- VOLATILITY PROFILE WEIGHTS ---
+volatility_weights:
+  round_to_round_sd: 0.40      # Standard deviation of round scores
+  cut_rate: 0.20               # Historical MC frequency
+  top10_variance: 0.20         # Consistency of contention vs boom/bust
+  bogey_avoidance: 0.20        # Resilience under pressure
+
+# --- MARKET SIGNAL WEIGHTS ---
+market_signal_weights:
+  opening_to_current_drift: 0.35   # Line movement from open to now
+  sharp_book_vs_public_delta: 0.30 # Pinnacle/Circa vs public-facing books
+  closing_line_value_history: 0.20 # Player's CLV track record
+  book_disagreement: 0.15          # Variance across books = opportunity
+
+# --- EDGE THRESHOLDS FOR PICKS ---
+edge_thresholds:
+  minimum_edge_to_flag: 0.04       # 4% edge minimum before flagging
+  strong_edge_threshold: 0.08      # 8%+ = strong play
+  elite_edge_threshold: 0.14       # 14%+ = top priority bet
+  fragile_edge_max_stake: 0.01     # Cap fragile bets at 1% bankroll
+
+# --- CONFIDENCE TIERS ---
+# Used for stake sizing and card categorization
+confidence_tiers:
+  tier_1:
+    label: "Elite"
+    edge_min: 0.14
+    max_stake_pct: 0.03
+  tier_2:
+    label: "Strong"
+    edge_min: 0.08
+    max_stake_pct: 0.02
+  tier_3:
+    label: "Value"
+    edge_min: 0.04
+    max_stake_pct: 0.015
+  tier_4:
+    label: "Speculative"
+    edge_min: 0.02
+    max_stake_pct: 0.01
+
+# --- SELF-IMPROVEMENT GATE ---
+# Minimum evidence required before weight_updater.py adjusts any weight
+weight_update_gates:
+  minimum_events_for_update: 6      # Need at least 6 events of data
+  minimum_samples_per_weight: 40    # Need 40+ picks to evaluate a weight
+  max_single_week_adjustment: 0.03  # Max weight change in one cycle
+  max_cumulative_adjustment: 0.15   # Max total drift from default
+  require_changelog_entry: true     # Always log changes
+  require_dual_direction_evidence: true  # Must see both success and failure

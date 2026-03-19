@@ -1,0 +1,79 @@
+# staking.yaml
+# Stake sizing rules by edge tier, confidence, and market type.
+# All stakes expressed as % of total bankroll.
+
+version: "1.0.0"
+
+bankroll_management:
+  max_single_bet_pct: 0.03        # Never exceed 3% on any single bet
+  max_weekly_exposure_pct: 0.15   # Never exceed 15% total in one event
+  max_correlated_stack_pct: 0.06  # Max stacked correlated bets (e.g. same player, outright + top5)
+  max_longshot_exposure_pct: 0.05 # Max total in longshots (>50/1) per event
+  max_liv_exposure_pct: 0.07      # Cap LIV exposure due to data uncertainty
+
+edge_to_stake:
+  # Format: [min_edge, max_stake_pct, kelly_fraction]
+  # Kelly fraction is a conservative fraction of full Kelly
+  elite:
+    edge_min: 0.14
+    max_stake_pct: 0.025
+    kelly_fraction: 0.20
+  strong:
+    edge_min: 0.08
+    max_stake_pct: 0.020
+    kelly_fraction: 0.15
+  value:
+    edge_min: 0.04
+    max_stake_pct: 0.015
+    kelly_fraction: 0.12
+  speculative:
+    edge_min: 0.02
+    max_stake_pct: 0.010
+    kelly_fraction: 0.08
+
+market_type_adjustments:
+  outright_win:
+    stake_multiplier: 0.70        # Outrights are high variance — reduce stake
+    min_edge_required: 0.08       # Higher bar for outrights
+  top_5:
+    stake_multiplier: 0.85
+    min_edge_required: 0.05
+  top_10:
+    stake_multiplier: 1.00
+    min_edge_required: 0.04
+  top_20:
+    stake_multiplier: 1.00
+    min_edge_required: 0.04
+  h2h_matchup:
+    stake_multiplier: 1.10        # H2H more precise — can bet slightly more
+    min_edge_required: 0.04
+  make_cut:
+    stake_multiplier: 0.90
+    min_edge_required: 0.04
+  miss_cut:
+    stake_multiplier: 0.80
+    min_edge_required: 0.05
+  first_round_leader:
+    stake_multiplier: 0.60        # FRL is high variance
+    min_edge_required: 0.10
+  longshot:
+    stake_multiplier: 0.50        # Hard cap on longshot stakes
+    min_edge_required: 0.15       # Need bigger edge on longshots
+
+fragility_rules:
+  # Reduce stake if a bet has these fragility flags
+  small_sample_edge:
+    flag: "edge_based_on_<10_comp_rounds"
+    stake_penalty: 0.40
+  single_stat_driver:
+    flag: "edge_driven_by_one_signal_family"
+    stake_penalty: 0.30
+  injury_unconfirmed:
+    flag: "injury_status_unverified"
+    stake_penalty: 0.50
+  stale_line:
+    flag: "line_has_not_moved_in_48h"
+    stake_penalty: 0.20
+  weather_unknown:
+    flag: "weather_window_unresolved"
+    stake_penalty: 0.20

@@ -1,0 +1,62 @@
+# kill_switches.yaml
+# Sub-model degradation thresholds and manual kill switches.
+# When a switch is triggered, the corresponding sub-model or
+# bet category is suppressed until the switch is manually reset.
+
+version: "1.0.0"
+
+switches:
+
+  liv_outright_model:
+    description: "Kill LIV outright win bets if model ROI degrades"
+    triggered: false
+    trigger_threshold:
+      metric: "roi_pct_rolling_6_events"
+      tour: "LIV"
+      market_type: "outright"
+      threshold: -25.0       # Kill if 6-event LIV outright ROI < -25%
+    reset_condition: "Manual reset after 4+ event re-evaluation"
+    note: "LIV data is thinner — kill switch fires faster here"
+
+  frl_model:
+    description: "Kill FRL bets if model ROI degrades"
+    triggered: false
+    trigger_threshold:
+      metric: "roi_pct_rolling_8_events"
+      market_type: "frl"
+      threshold: -30.0
+    reset_condition: "Manual reset after FRL model review"
+
+  low_confidence_outright:
+    description: "Kill all outrights when data confidence < 0.40 for majority of field"
+    triggered: false
+    trigger_threshold:
+      metric: "avg_field_data_confidence"
+      threshold: 0.40
+    reset_condition: "Auto-resets when data quality improves"
+    note: "Fires during data feed outages or for very data-sparse tours"
+
+  stale_market_protection:
+    description: "Kill all bets if majority of lines are stale"
+    triggered: false
+    trigger_threshold:
+      metric: "pct_stale_lines"
+      threshold: 0.60        # 60% of lines stale = no betting
+    reset_condition: "Auto-resets when market data refreshes"
+
+  overfit_guard:
+    description: "Kill model output if calibration error exceeds 10% across buckets"
+    triggered: false
+    trigger_threshold:
+      metric: "max_calibration_bucket_error"
+      threshold: 0.10
+    reset_condition: "Manual reset after calibration review"
+
+  bankroll_drawdown:
+    description: "Reduce all stakes by 50% if 4-week realized drawdown exceeds 15%"
+    triggered: false
+    trigger_threshold:
+      metric: "realized_drawdown_4_weeks"
+      threshold: -0.15
+    effect: "stake_multiplier_override: 0.50"
+    reset_condition: "Manual reset after bankroll review"

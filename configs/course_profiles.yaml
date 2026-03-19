@@ -1,0 +1,233 @@
+# course_profiles.yaml
+# Course intelligence database.
+# Each course entry defines its demand profile, which drives
+# course-specific SG weight shifts in fit_model.py.
+#
+# comp_courses: list of courses with similar demand profiles
+# sg_weights: override global sg_default_weights for this course
+# scoring_env: "scoring" (low scoring) or "survival" or "balanced"
+
+version: "1.0.0"
+
+courses:
+
+  augusta_national:
+    display_name: "Augusta National Golf Club"
+    event: "Masters Tournament"
+    tour: "PGA"
+    yardage: 7510
+    par: 72
+    altitude_ft: 375
+    agronomy: "bentgrass_greens_bermuda_fairways"
+    green_type: "bent"
+    rough_severity: "medium"
+    fairway_width: "moderate"
+    driving_penalty: "moderate"
+    wedge_frequency: "low"
+    approach_emphasis: "mid_iron_heavy"
+    putting_emphasis: "high"
+    scoring_env: "survival_then_scoring"
+    weather_exposure: "low"
+    wind_factor: "low"
+    altitude_factor: "negligible"
+    archetype_fit: ["iron_players", "elite_putters", "creative_scramblers"]
+    archetype_penalize: ["bomber_spray_drivers", "bermuda_only_putters"]
+    sg_weights:
+      sg_ott: 0.18
+      sg_app: 0.38
+      sg_atg: 0.22
+      sg_putt: 0.22
+    comp_courses:
+      - "muirfield_village"
+      - "quail_hollow"
+      - "bay_hill"
+    notes: "Par 5 birdie conversion critical. Amen Corner demands creativity. Putting on slopes is tournament-defining."
+
+  torrey_pines_south:
+    display_name: "Torrey Pines South Course"
+    event: "Farmers Insurance Open / US Open"
+    tour: "PGA"
+    yardage: 7765
+    par: 72
+    altitude_ft: 300
+    agronomy: "poa_annua_greens_kikuyu_rough"
+    green_type: "poa"
+    rough_severity: "severe"
+    fairway_width: "moderate"
+    driving_penalty: "high"
+    wedge_frequency: "medium"
+    approach_emphasis: "long_iron_heavy"
+    putting_emphasis: "medium"
+    scoring_env: "survival"
+    weather_exposure: "medium"
+    wind_factor: "medium"
+    altitude_factor: "negligible"
+    archetype_fit: ["long_accurate_drivers", "elite_iron_players", "poa_putters"]
+    archetype_penalize: ["short_drivers", "bermuda_specialists"]
+    sg_weights:
+      sg_ott: 0.30
+      sg_app: 0.35
+      sg_atg: 0.18
+      sg_putt: 0.17
+    comp_courses:
+      - "riviera"
+      - "los_angeles_cc"
+      - "pebble_beach"
+
+  riviera_cc:
+    display_name: "Riviera Country Club"
+    event: "The Genesis Invitational"
+    tour: "PGA"
+    yardage: 7322
+    par: 71
+    altitude_ft: 200
+    agronomy: "poa_annua_greens_kikuyu_rough"
+    green_type: "poa"
+    rough_severity: "severe"
+    fairway_width: "moderate"
+    driving_penalty: "high"
+    wedge_frequency: "medium_high"
+    approach_emphasis: "balanced"
+    putting_emphasis: "medium_high"
+    scoring_env: "survival"
+    weather_exposure: "low"
+    wind_factor: "low_medium"
+    altitude_factor: "negligible"
+    archetype_fit: ["accurate_drivers", "elite_approach_players", "poa_specialists"]
+    archetype_penalize: ["bombers_with_poor_accuracy", "poor_poa_putters"]
+    sg_weights:
+      sg_ott: 0.22
+      sg_app: 0.36
+      sg_atg: 0.18
+      sg_putt: 0.24
+    comp_courses:
+      - "torrey_pines_south"
+      - "los_angeles_cc"
+      - "pebble_beach"
+    notes: "Riviera rewards complete ball-strikers. Poa greens reward local/specialist knowledge."
+
+  tpc_sawgrass:
+    display_name: "TPC Sawgrass (Stadium)"
+    event: "THE PLAYERS Championship"
+    tour: "PGA"
+    yardage: 7215
+    par: 72
+    altitude_ft: 25
+    agronomy: "bermudagrass_overseed"
+    green_type: "bermuda_overseed"
+    rough_severity: "moderate"
+    fairway_width: "tight"
+    driving_penalty: "medium_high"
+    wedge_frequency: "high"
+    approach_emphasis: "wedge_and_short_iron"
+    putting_emphasis: "medium"
+    scoring_env: "scoring"
+    weather_exposure: "high"
+    wind_factor: "high"
+    altitude_factor: "negligible"
+    archetype_fit: ["accurate_drivers", "elite_wedge_players", "wind_specialists"]
+    archetype_penalize: ["wild_drivers", "poor_wedge_players"]
+    sg_weights:
+      sg_ott: 0.25
+      sg_app: 0.30
+      sg_atg: 0.25
+      sg_putt: 0.20
+    comp_courses:
+      - "harbour_town"
+      - "innisbrook_copperhead"
+    notes: "17th island green adds variance. Wind is the course's biggest second defense. Wedge proximity crucial."
+
+  # --- LIV COURSES ---
+
+  centurion_club:
+    display_name: "Centurion Club"
+    event: "LIV Golf London"
+    tour: "LIV"
+    yardage: 6760
+    par: 70
+    altitude_ft: 250
+    agronomy: "bentgrass"
+    green_type: "bent"
+    rough_severity: "light"
+    fairway_width: "wide"
+    driving_penalty: "low"
+    wedge_frequency: "high"
+    approach_emphasis: "wedge_heavy"
+    putting_emphasis: "high"
+    scoring_env: "scoring"
+    weather_exposure: "medium"
+    wind_factor: "medium"
+    altitude_factor: "negligible"
+    archetype_fit: ["birdie_machines", "elite_putters", "aggressive_scorers"]
+    archetype_penalize: ["conservative_grinders"]
+    sg_weights:
+      sg_ott: 0.18
+      sg_app: 0.28
+      sg_atg: 0.22
+      sg_putt: 0.32
+    comp_courses:
+      - "wentworth"
+      - "sunningdale"
+    liv_notes: "No cut format rewards pure scoring. Leaderboard compresses — top 20 finishes very achievable for any field member. Putting on bentgrass decisive."
+
+  el_camaleon:
+    display_name: "El Camaleón Golf Club"
+    event: "LIV Golf Mayakoba"
+    tour: "LIV"
+    yardage: 6988
+    par: 71
+    altitude_ft: 10
+    agronomy: "paspalum_tifton"
+    green_type: "paspalum"
+    rough_severity: "light"
+    fairway_width: "wide"
+    driving_penalty: "low"
+    wedge_frequency: "high"
+    approach_emphasis: "wedge_and_short_iron"
+    putting_emphasis: "high"
+    scoring_env: "scoring"
+    weather_exposure: "medium"
+    wind_factor: "medium"
+    altitude_factor: "low"
+    archetype_fit: ["birdie_machines", "paspalum_putters", "tropical_specialists"]
+    archetype_penalize: ["poor_paspalum_putters"]
+    sg_weights:
+      sg_ott: 0.20
+      sg_app: 0.27
+      sg_atg: 0.20
+      sg_putt: 0.33
+    comp_courses:
+      - "doral"
+      - "corales"
+    liv_notes: "Paspalum is very different from bent or bermuda. Players with Caribbean/Mexico course history have an edge."
+
+# --- DEFAULT TEMPLATE FOR NEW COURSE ENTRIES ---
+# Copy this block when adding a new course.
+_template:
+  display_name: ""
+  event: ""
+  tour: ""
+  yardage: 0
+  par: 72
+  altitude_ft: 0
+  agronomy: ""
+  green_type: ""
+  rough_severity: "moderate"
+  fairway_width: "moderate"
+  driving_penalty: "moderate"
+  wedge_frequency: "medium"
+  approach_emphasis: "balanced"
+  putting_emphasis: "medium"
+  scoring_env: "balanced"
+  weather_exposure: "medium"
+  wind_factor: "medium"
+  altitude_factor: "negligible"
+  archetype_fit: []
+  archetype_penalize: []
+  sg_weights:
+    sg_ott: 0.24
+    sg_app: 0.32
+    sg_atg: 0.20
+    sg_putt: 0.24
+  comp_courses: []
+  notes: ""
