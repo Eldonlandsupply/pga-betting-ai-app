@@ -1,4 +1,5 @@
 """
+from __future__ import annotations
 audit/post_event_audit.py
 --------------------------
 The post-event audit is the core self-improvement mechanism.
