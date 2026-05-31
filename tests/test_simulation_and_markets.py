@@ -10,8 +10,8 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from simulations.monte_carlo import simulate_tournament, compute_h2h_probabilities
-from markets.line_tracker import (
+from simulations.monte_carlo import simulate_tournament, compute_h2h_probabilities  # noqa: E402
+from markets.line_tracker import (  # noqa: E402
     track_event_lines, compute_edge,
     _decimal_to_implied_prob, _american_to_decimal,
     _hold_adjusted_prob, _compute_disagreement, _classify_movement,
