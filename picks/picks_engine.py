@@ -466,7 +466,7 @@ def _build_supporting_reasons(pid: str, market_type: str, model: dict, tracker: 
         reasons.append(f"Strong course fit (+{course_fit:.2f}): {course_summary[:80]}")
 
     if model.get("form_trend") == "improving":
-        reasons.append(f"Improving form trend (last 3 events vs prior 3)")
+        reasons.append("Improving form trend (last 3 events vs prior 3)")
 
     if tracker.get("sharp_signal"):
         reasons.append("Sharp book movement confirms model direction")
