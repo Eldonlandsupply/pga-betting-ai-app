@@ -25,11 +25,8 @@ Key outputs per player:
 - book_disagreement_score: variance across books (high = potential value)
 """
 
-import json
 import logging
 from datetime import datetime, timezone
-from pathlib import Path
-from typing import Any
 
 log = logging.getLogger(__name__)
 
