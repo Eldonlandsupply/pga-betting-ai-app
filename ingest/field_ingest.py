@@ -5,7 +5,9 @@ Ingests the player field for a given event.
 Fetches: entries, WDs, alternates, WR at time of event.
 """
 from __future__ import annotations
-import json, logging, os
+import json
+import logging
+import os
 from pathlib import Path
 log = logging.getLogger(__name__)
 
