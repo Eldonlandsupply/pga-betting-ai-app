@@ -15,6 +15,7 @@ This module reads recommendations from post_event_audit.py,
 checks them against the evidence gates in model_weights.yaml,
 and conditionally applies bounded adjustments.
 """
+from __future__ import annotations
 
 import logging
 from datetime import datetime
