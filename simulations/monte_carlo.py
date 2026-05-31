@@ -1,4 +1,5 @@
 """
+from __future__ import annotations
 simulations/monte_carlo.py
 ---------------------------
 Tournament simulation engine.
