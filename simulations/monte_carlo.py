@@ -1,5 +1,4 @@
 """
-from __future__ import annotations
 simulations/monte_carlo.py
 ---------------------------
 Tournament simulation engine.
@@ -23,6 +22,7 @@ Design philosophy:
 - Output probabilities are model output, NOT calibrated market probabilities.
   Market signals and hold adjustments are applied downstream.
 """
+from __future__ import annotations
 
 import logging
 import random
