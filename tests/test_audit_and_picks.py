@@ -6,21 +6,20 @@ Tests for post-event audit, adversarial review, and picks engine logic.
 import sys
 import unittest
 from pathlib import Path
-from unittest.mock import patch, MagicMock
 
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from audit.post_event_audit import (
+from audit.post_event_audit import (  # noqa: E402
     _grade_pick, _grade_by_market, _compute_pnl,
     _compute_expected_ev, _assess_model_direction, _compute_metrics,
 )
-from picks.adversarial_review import (
+from picks.adversarial_review import (  # noqa: E402
     run_adversarial_review, _compute_kill_score, _downgrade_tier,
     _detect_correlated_stacks,
 )
-from picks.card_builder import build_betting_card, build_markdown_card
+from picks.card_builder import build_betting_card, build_markdown_card  # noqa: E402
 
 
 # ---------------------------------------------------------------------------
