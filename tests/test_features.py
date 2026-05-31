@@ -23,8 +23,10 @@ from features.market_signals import build_market_signals  # noqa: E402
 # ---------------------------------------------------------------------------
 
 def _make_player(pid="p1", tour="PGA", **kwargs):
+    from datetime import date, timedelta
+    recent = (date.today() - timedelta(weeks=2)).isoformat()
     base = {"id": pid, "tour": tour, "injury_status": "healthy",
-            "last_event_date": "2026-03-01", "recent_event_count_5w": 2}
+            "last_event_date": recent, "recent_event_count_5w": 2}
     base.update(kwargs)
     return base
 
