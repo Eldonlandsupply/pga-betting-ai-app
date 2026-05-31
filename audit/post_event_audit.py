@@ -24,7 +24,6 @@ import json
 import logging
 from datetime import datetime
 from pathlib import Path
-from typing import Any
 
 log = logging.getLogger(__name__)
 
@@ -200,7 +199,6 @@ def _grade_by_market(market_type: str, final_pos: int, pick: dict, made_cut: boo
             return "void"
         return "win" if not made_cut else "loss"
     elif market_type == "h2h":
-        opponent_id = pick.get("opponent_id")
         # H2H grading requires comparing two players' positions
         return "void"  # Resolved separately in H2H grader
     elif market_type == "frl":
