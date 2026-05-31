@@ -20,7 +20,6 @@ from __future__ import annotations
 
 import logging
 from datetime import date
-from typing import Any
 
 log = logging.getLogger(__name__)
 
