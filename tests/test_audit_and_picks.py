@@ -3,7 +3,8 @@ tests/test_audit_and_picks.py
 ------------------------------
 Tests for post-event audit, adversarial review, and picks engine logic.
 """
-import sys, unittest
+import sys
+import unittest
 from pathlib import Path
 from unittest.mock import patch, MagicMock
 
