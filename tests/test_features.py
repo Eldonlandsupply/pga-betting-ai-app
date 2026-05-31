@@ -5,18 +5,17 @@ Unit tests for all feature engineering modules.
 """
 import sys
 import unittest
-from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from features.player_baseline import build_baselines, _weighted_mean, _field_strength_weight
-from features.recent_form import build_form_features, _regress_putting, _compute_form_trend
-from features.volatility import build_volatility_profiles, _compute_ceiling, _compute_consistency, _classify_tier
-from features.contextual_flags import build_contextual_flags, _weeks_since
-from features.market_signals import build_market_signals
+from features.player_baseline import build_baselines, _weighted_mean, _field_strength_weight  # noqa: E402
+from features.recent_form import build_form_features, _regress_putting, _compute_form_trend  # noqa: E402
+from features.volatility import build_volatility_profiles, _compute_ceiling, _compute_consistency, _classify_tier  # noqa: E402
+from features.contextual_flags import build_contextual_flags, _weeks_since  # noqa: E402
+from features.market_signals import build_market_signals  # noqa: E402
 
 
 # ---------------------------------------------------------------------------
