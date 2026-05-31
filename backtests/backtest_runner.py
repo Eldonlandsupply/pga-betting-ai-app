@@ -19,6 +19,7 @@ Benchmark strategies:
 3. Recent form only (SG last 5 events)
 4. Market close (simulate betting closing line — measures skill vs luck)
 """
+from __future__ import annotations
 
 import json
 import logging
