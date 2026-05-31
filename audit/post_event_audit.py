@@ -1,5 +1,4 @@
 """
-from __future__ import annotations
 audit/post_event_audit.py
 --------------------------
 The post-event audit is the core self-improvement mechanism.
@@ -20,6 +19,7 @@ Design rules:
 - "We were wrong but won" is a dangerous success — flag it.
 - Every failure has a cause category, not just "bad pick."
 """
+from __future__ import annotations
 
 import json
 import logging
