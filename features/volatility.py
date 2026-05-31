@@ -72,7 +72,6 @@ def _compute_profile(pid: str, player_stats: dict) -> dict:
     round_sd = float(_std(scores)) if len(scores) >= 10 else None
 
     # Cut rate (PGA only — rounds with cut_event=True)
-    cut_events = [r for r in rounds if r.get("tournament_type") not in ("liv",)]
     cut_rate = player_stats.get("make_cut_rate")
 
     # Top-10 and win rates

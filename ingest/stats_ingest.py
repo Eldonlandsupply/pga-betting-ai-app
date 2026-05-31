@@ -2,7 +2,9 @@
 ingest/stats_ingest.py — Player strokes gained and stat ingestion.
 """
 from __future__ import annotations
-import json, logging, os
+import json
+import logging
+import os
 from pathlib import Path
 log = logging.getLogger(__name__)
 
