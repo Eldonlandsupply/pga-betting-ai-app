@@ -1,6 +1,7 @@
 """reports/analyst_report.py"""
 from __future__ import annotations
-import json, logging
+import json
+import logging
 from datetime import datetime, timezone
 from pathlib import Path
 log = logging.getLogger(__name__)
