@@ -3,7 +3,8 @@ tests/test_features.py
 -----------------------
 Unit tests for all feature engineering modules.
 """
-import sys, unittest
+import sys
+import unittest
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
