@@ -19,14 +19,13 @@ Benchmark strategies:
 3. Recent form only (SG last 5 events)
 4. Market close (simulate betting closing line — measures skill vs luck)
 """
+from __future__ import annotations
 
 import json
 import logging
 from datetime import datetime
 from pathlib import Path
-from typing import Any
 
-import numpy as np
 
 log = logging.getLogger(__name__)
 

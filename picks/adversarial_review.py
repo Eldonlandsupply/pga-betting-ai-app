@@ -203,7 +203,7 @@ def _challenge_pick(pick: dict, model_outputs: dict, markets: dict) -> list[dict
     if world_rank <= 10 and model_prob > implied_prob * 1.5:
         challenges.append({
             "flag": "FAMOUS_NAME_BIAS",
-            "detail": f"Top-10 ranked player. Verify edge is data-driven, not reputation inflation.",
+            "detail": "Top-10 ranked player. Verify edge is data-driven, not reputation inflation.",
             "severity": "medium",
         })
 

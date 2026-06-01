@@ -14,6 +14,7 @@ Key design decisions:
 - Applies a "data depth" confidence score so thin data is flagged.
 - LIV players: applies pga_stat_transfer_weight and data_depth_penalty.
 """
+from __future__ import annotations
 
 import logging
 import math

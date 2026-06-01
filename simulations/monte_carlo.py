@@ -22,13 +22,13 @@ Design philosophy:
 - Output probabilities are model output, NOT calibrated market probabilities.
   Market signals and hold adjustments are applied downstream.
 """
+from __future__ import annotations
 
 import logging
-import math
 import random
-from typing import Any
 
 import numpy as np
+from typing import Any
 
 log = logging.getLogger(__name__)
 

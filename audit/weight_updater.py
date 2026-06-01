@@ -15,8 +15,8 @@ This module reads recommendations from post_event_audit.py,
 checks them against the evidence gates in model_weights.yaml,
 and conditionally applies bounded adjustments.
 """
+from __future__ import annotations
 
-import json
 import logging
 from datetime import datetime
 from pathlib import Path
@@ -108,7 +108,6 @@ def _check_evidence_gate(rec: dict, audit_output: dict, gates: dict) -> dict:
     """
     # Check cross-week pattern
     cross_week_patterns = audit_output.get("cross_week_patterns", [])
-    pattern_causes = {p["cause"] for p in cross_week_patterns}
 
     # Map recommendation to a failure cause
     rec_cause = _infer_cause_from_recommendation(rec)

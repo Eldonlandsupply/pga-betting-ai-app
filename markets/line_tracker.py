@@ -24,12 +24,10 @@ Key outputs per player:
 - sharp_signal: True if Pinnacle/Circa moved significantly vs rec books
 - book_disagreement_score: variance across books (high = potential value)
 """
+from __future__ import annotations
 
-import json
 import logging
 from datetime import datetime, timezone
-from pathlib import Path
-from typing import Any
 
 log = logging.getLogger(__name__)
 

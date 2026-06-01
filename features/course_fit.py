@@ -20,6 +20,7 @@ Key design rules:
 - Surface splits only apply when we have sufficient grass-type data
 - Uncertainty is tracked and propagated
 """
+from __future__ import annotations
 
 import logging
 from typing import Any

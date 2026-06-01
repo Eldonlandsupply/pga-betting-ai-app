@@ -25,10 +25,9 @@ import argparse
 import logging
 import sys
 from datetime import datetime
-from pathlib import Path
 
 # Internal imports
-from ingest.schedule_ingest import detect_current_event, get_upcoming_events
+from ingest.schedule_ingest import detect_current_event
 from ingest.field_ingest import ingest_field
 from ingest.stats_ingest import ingest_player_stats
 from ingest.market_ingest import ingest_markets
@@ -87,7 +86,7 @@ def run_pre_event_pipeline(event_id: str, dry_run: bool = False):
 
     # --- STEP 4: WEATHER INGESTION ---
     log.info("Step 4/9: Ingesting weather data...")
-    weather = ingest_weather(event_id)
+    ingest_weather(event_id)  # weather data ingested into shared state
 
     # --- STEP 5: FEATURE BUILDING ---
     log.info("Step 5/9: Building feature set...")
